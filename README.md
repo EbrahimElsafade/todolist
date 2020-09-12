@@ -1,4 +1,4 @@
-# Todo List Angular
+# Todo List build by Angular
  - You can Add, Edit and delete your Todolist.
  - Support multi language (EN - AR).
  - Used Json server as API.

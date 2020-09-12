@@ -1,0 +1,41 @@
+<div class="flip-box" id="flip" [ngClass]="active ? 'flip-box flip' : 'flip-box'">
+  <div class="flip-box-inner">
+    <div class="flip-box-front">
+      <div class="card">
+        <!--Date-->
+        <div class="card--date">
+          <div class="card--date__number">
+            <p class="card--date__number__bold">12</p>
+            <p>{{"Month" | translate}} <br> <span class="card--date__number__light">2016</span></p>
+          </div>
+          <div class="card--date__number">
+            <p>{{"Day" | translate}}</p>
+          </div>
+        </div>
+        <!--card item-->
+        <div class="card--item" *ngFor="let todo of todosList" [ngClass]="todo.completed ? 'clicked' : ''">
+          <div class="card--item__text" >
+            <p>{{todo.title}}</p>
+            <div class="card--item__options">
+              <i class="icon edit icon-edit" *ngIf="!todo.completed" (click)="editTodo(todo)"></i>
+              <i class="icon delete icon-bin" (click)="removeTodo(todo)"></i>
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" id="checkbox-{{todo.id}}" (change)="checkboxClicked(todo)" [(ngModel)]="todo.completed" #completed="ngModel"/>
+              <label for="checkbox-{{todo.id}}"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="card--btn card--add" (click)="active = !active">
+        <i class="icon icon-plus"></i>
+      </button>
+    </div>
+
+
+
+    <app-todo-form [currentTodo]="currentTodoList" [isEdit]="isEdit" (newTodo)="onNewTodo($event)" (cssRefresh)="refreshCss($event)"
+      (updatedTodo)="onUpdatedTodo($event)"></app-todo-form>
+
+  </div>
+</div>

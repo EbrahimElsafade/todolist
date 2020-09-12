@@ -1,0 +1,42 @@
+<div class="loader" *ngIf="loader">
+  <h2>{{"PleaseWait" | translate}}</h2>
+</div>
+
+<div class="flip-box-back">
+  <form #todoForm="ngForm">
+    <div class="card">
+      <div class="back" (click)='refreshCss()'><i class="arrow right"></i></div>
+      <div class="card--title">
+        <h2>{{"AddNewTask" | translate}}</h2>
+      </div>
+
+      <textarea
+      class="card--input"
+      placeholder="{{'AddNewTask' | translate}}"
+      [(ngModel)]="currentTodo.title"
+      [ngClass]="{'is-invalid':name.errors && name.touched}"
+      name="Name"
+      #name="ngModel"
+      required
+      minlength="2"
+   ></textarea>
+   <div [hidden]="!name.errors?.required" class="invalid-feedback">{{"NameRequired" | translate}}</div>
+   <div [hidden]="!name.errors?.minlength" class="invalid-feedback">{{"MaxLengthCharecters" | translate}} </div>
+   <input type="hidden" [(ngModel)]="currentTodo.id" name="id">
+   <input type="checkbox" name="completed" [(ngModel)]="currentTodo.completed" #completed="ngModel" class="hide"/>
+
+    </div>
+    <button id="afterAddingTask" class="card--btn card--add"
+    *ngIf="!isEdit" [disabled]="!todoForm.form.valid" (click)="addTodo(name.value, completed.value)"
+    >
+      <i for="afterAddingTask" class="icon icon-tick"></i>
+    </button>
+
+    <button id="afterAddingTask" class="card--btn card--add"
+    *ngIf="isEdit" (click)="updateTodo()" style="background:yallow;"
+    >
+      <i for="afterAddingTask" class="icon icon-tick"></i>
+    </button>
+
+  </form>
+</div>

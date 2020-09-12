@@ -1,0 +1,156 @@
+@mixin fz($f) {
+    font-size: percentage($f / $baseFz);
+}
+
+@mixin fz-rem($f) {
+    font-size: $f / $baseFz+ rem ;
+}
+@mixin lh($lh) {
+    line-height:  percentage($lh / $baseFz);
+}
+ 
+
+@mixin bg-opacity($color, $opacity) {
+    $c-ie: ie-hex-str(rgba($color, $opacity));
+    background: rgba($color, $opacity);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$c-ie},endColorstr=#{$c-ie});
+}
+
+@mixin placeholder {
+    &.placeholder {
+        @content;
+    }
+    //for jquery.placeholder.js
+    &:-moz-placeholder {
+        @content;
+    }
+    &::-moz-placeholder {
+        @content;
+    }
+    &::-webkit-input-placeholder {
+        @content;
+    }
+    &:-ms-input-placeholder {
+        @content;
+    }
+}
+
+
+
+@mixin clearfix {
+    &:after,&:before {
+        display: table;
+        content: '';
+        clear: both;
+        zoom: 1;
+    }
+    zoom: 1;
+    clear: both;
+}
+
+@mixin abs-center {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
+%dib-center {
+    text-align: center;
+    font-size: 0;
+}
+
+
+@mixin keyframe ($animation_name) {
+    @-webkit-keyframes $animation_name {
+        @content;
+    }
+ 
+    @-moz-keyframes $animation_name {
+        @content;
+    }
+ 
+    @-o-keyframes $animation_name {
+        @content;
+    }
+ 
+    @keyframes $animation_name {
+        @content;
+    }
+}
+
+
+@mixin animation ($animation, $time, $delay, $count:1) {
+
+    -webkit-animation: $animation $time $count;
+ 
+    -moz-animation: $animation $time $count;
+ 
+    -o-animation: $animation $time $count;
+ 
+    animation: $animation $time $count;
+    //animation-delay: $delay;
+}
+
+
+@mixin no-selection() {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+}
+@mixin square($d) {
+    width: $d;
+    height: $d;
+    
+}
+
+
+@mixin fw($w) {
+    @if $w == "l" {
+        font-weight: 300;
+    } @else if $w == "r" {
+        font-weight: 400;        
+    } @else if $w == "smb" {
+        font-weight: 600;        
+    } @else if $w == "b" {
+        font-weight: 700;        
+    } @else if $w == "exb" {
+        font-weight: 800;        
+    }
+}
+
+@mixin textoverflow() {
+    overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;	
+}
+
+ 
+@mixin hide-text() {
+  font: #{0/0} a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+ 
+%no-padding{
+    padding-left: 0;
+    padding-right: 0;
+}
+@mixin bs-no-padding() {
+    @for $i from 1 through 12 {
+        .col-lg-#{$i}.no-padding,
+        .col-sm-#{$i}.no-padding,
+        .col-xs-#{$i}.no-padding {
+           @extend %no-padding;
+        }
+    }
+}

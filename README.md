@@ -8,7 +8,7 @@
 
  - Install Json server `npm install -g json-server`.
  - Go to `jsonserver` inside `src` folder.
- - Run this command-line `$ json-server --watch db.json --port 3004`.
+ - Run this command-line `$ json-server --watch db.json --port 3000`.
  - Back to the main project folder and run `npm install` then `ng serve`.
  
 
